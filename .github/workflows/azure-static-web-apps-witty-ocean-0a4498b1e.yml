@@ -25,7 +25,7 @@ jobs:
       run: npm install
       
     - name: Start the application
-      run: node server.js
+      run: node app.js
       
     - name: Check if application is running
       run: |
