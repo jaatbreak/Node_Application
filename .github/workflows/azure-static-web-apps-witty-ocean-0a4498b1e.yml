@@ -1,33 +1,24 @@
-name: Node.js CI
+name: Node.js Application Deployment
 
 on:
   push:
     branches:
-      - master
-  pull_request:
-    branches:
-      - master
+      - main  # Adjust the branch name as needed
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v2
       
-    - name: Setup Node.js
+    - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
-        
-    - name: Install dependencies
-      run: npm install
-      
-    - name: Start the application
-      run: node app.js
-      
-    - name: Check if application is running
+        node-version: '14'  # Adjust the Node.js version as needed
+
+    - name: Deploy to server
       run: |
-        sleep 10 # Adjust this sleep time as needed
-        curl http://localhost:3000
+        # Add your deployment script/command here
+        node app.js
