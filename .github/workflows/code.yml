@@ -17,6 +17,9 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: '14'  # Adjust the Node.js version as needed
+        
+    - name: DNS of Server
+      run : curl ifconfig.me
 
     - name: Deploy to server
       run: | 
