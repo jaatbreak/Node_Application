@@ -19,6 +19,4 @@ jobs:
         node-version: '14'  # Adjust the Node.js version as needed
 
     - name: Deploy to server
-      run: |
-        # Add your deployment script/command here
-        node app.js
+      run: node app.js
