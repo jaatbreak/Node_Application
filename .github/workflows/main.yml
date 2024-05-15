@@ -19,9 +19,7 @@ jobs:
         node-version: '14'  # Adjust the Node.js version as needed
         
     - name: Retrieve Public IP
-      run: echo "Public IP: ${{ steps.retrieve_ip.outputs.public_ip }}"
-      id: retrieve_ip
-      shell: bash
+      run: sudo curl ifconfig.me
       
     - name: Installing Apache server 
       run: |
