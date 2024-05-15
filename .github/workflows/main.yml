@@ -30,9 +30,8 @@ jobs:
     - name: Copy Virtual Host file
       run: |
         sudo cp test.conf /etc/apache2/sites-available/
-        ls -n /etc/apache2/sites-available/test.conf  /etc/apache2/sites-available/
+
         sudo a2ensite test.conf
-        sudo apachectl configtest
         sudo a2enmod proxy
         sudo a2enmod proxy_http
 
