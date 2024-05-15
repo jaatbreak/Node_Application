@@ -35,7 +35,7 @@ jobs:
         
     - name: Disable Default Apache Configuration
       run: |
-        sudo systemctl reload apache2
+       
         sudo systemctl status apache2
         sudo tail -n 50 /var/log/apache2/error.log
 
