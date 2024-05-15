@@ -30,11 +30,9 @@ jobs:
     - name: Copy Virtual Host file
       run: |
         sudo cp test.conf /etc/apache2/sites-available/
-
         sudo a2ensite test.conf
         sudo a2enmod proxy
         sudo a2enmod proxy_http
-
         
     - name: Apache Service start and enable 
       run: |
@@ -42,5 +40,12 @@ jobs:
         sudo systemctl start apache2.service
         sudo systemctl status apache2.service
         sudo curl localhost
-        
 
+    - name: Enable firewall
+      run: sudo ufw enable
+
+    - name: Allow port 80 in firewall
+      run: |
+       sudo ufw allow 80/tcp
+       sudo ufw status 
+      
