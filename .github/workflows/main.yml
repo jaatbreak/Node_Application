@@ -24,6 +24,7 @@ jobs:
     - name: Installing Apache server 
       run: |
         sudo apt-get update && sudo apt-get install -y apache2
+        sudo systemctl start apache2 && sudo systemctl enable apache2
         sudo cp -r project /var/www/html
         
     - name: Copy Virtual Host file
