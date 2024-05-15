@@ -35,5 +35,4 @@ jobs:
         
     - name: Disable Default Apache Configuration
       run: |
-        sudo a2dissite 000-default.conf
         sudo systemctl reload apache2
