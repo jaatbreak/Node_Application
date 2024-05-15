@@ -13,23 +13,27 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       
-    - name: Set up Node.js setup
+    - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
         node-version: '14'  # Adjust the Node.js version as needed
         
-    - name: DNS of Server
-      run : curl ifconfig.me
-
-    - name: Installing the apache server 
-       run :|
-           sudo apt-get update && sudo apt-get install -y apache2
-           sudo cp -r project /var/www/html
-            
-    - name: copy the virtual host file
-        run :|
-           sudo cp test.conf /etc/site-available/
-           ls
-           sudo a2ensite test.conf
-           sudo systemcl reload apache2
-    
+    - name: Retrieve Public IP
+      run: echo "Public IP: ${{ steps.retrieve_ip.outputs.public_ip }}"
+      id: retrieve_ip
+      shell: bash
+      
+    - name: Installing Apache server 
+      run: |
+        sudo apt-get update && sudo apt-get install -y apache2
+        sudo cp -r project /var/www/html
+        
+    - name: Copy Virtual Host file
+      run: |
+        sudo cp test.conf /etc/apache2/sites-available/
+        sudo a2ensite test.conf
+        
+    - name: Disable Default Apache Configuration
+      run: |
+        sudo a2dissite 000-default.conf
+        sudo systemctl reload apache2
