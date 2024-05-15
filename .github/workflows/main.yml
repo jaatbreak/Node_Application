@@ -33,6 +33,9 @@ jobs:
         ls -n /etc/apache2/sites-available/test.conf  /etc/apache2/sites-available/
         sudo a2ensite test.conf
         sudo apachectl configtest
+        sudo a2enmod proxy
+        sudo a2enmod proxy_http
+
         
     - name: Apache Service start and enable 
       run: |
