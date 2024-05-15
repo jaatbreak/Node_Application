@@ -24,13 +24,13 @@ jobs:
     - name: Installing Apache server 
       run: |
         sudo apt-get update && sudo apt-get install -y apache2
-        sudo systemctl start apache2 && sudo systemctl enable apache2
         sudo cp -r project /var/www/html
+        
         
     - name: Copy Virtual Host file
       run: |
         sudo cp test.conf /etc/apache2/sites-available/
-        ls /etc/apache2/sites-available/
+        ls -n /etc/apache2/sites-available/test.conf  /etc/apache2/sites-available/
         sudo a2ensite test.conf
         
     - name: Disable Default Apache Configuration
